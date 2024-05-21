@@ -31,9 +31,12 @@ class Food:
         self.place_food()
 
     def place_food(self):
-        x = random.randint(0, (GAME_WIDTH // SPACE_SIZE - 1)) * SPACE_SIZE
-        y = random.randint(0, (GAME_HEIGHT // SPACE_SIZE - 1)) * SPACE_SIZE
-        self.coordinates = [x, y]
+        while True:
+            x = random.randint(0, (GAME_WIDTH // SPACE_SIZE - 1)) * SPACE_SIZE
+            y = random.randint(0, (GAME_HEIGHT // SPACE_SIZE - 1)) * SPACE_SIZE
+            self.coordinates = [x, y]
+            if self.coordinates not in snake.coordinates:
+                break
         canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food")
 
 
